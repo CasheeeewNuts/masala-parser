@@ -1,8 +1,8 @@
 {
-  "name": "@masala/parser",
+  "name": "@domdomegg/masala-parser",
   "description": "Masala Parser",
   "license": "LGPL-2.1",
-  "version": "0.8.1",
+  "version": "1.0.1",
   "keywords": [
     "parser",
     "parsec",
@@ -12,7 +12,7 @@
     "functional",
     "composable"
   ],
-  "homepage": "https://github.com/d-plaindoux/masala-parser",
+  "homepage": "https://github.com/domdomegg/masala-parser",
   "author": {
     "name": "Didier Plaindoux",
     "email": "d.plaindoux@free.fr",
@@ -27,19 +27,23 @@
     {
       "name": "Simon Zozol",
       "url": "http://www.robusta.io"
+    },
+    {
+      "name": "Adam Jones (domdomegg)",
+      "url": "https://github.com/domdomegg"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/d-plaindoux/masala-parser"
+    "url": "https://github.com/domdomegg/masala-parser"
   },
   "bugs": {
-    "url": "https://github.com/d-plaindoux/masala-parser/issues"
+    "url": "https://github.com/domdomegg/masala-parser/issues"
   },
   "licenses": [
     {
       "type": "LGPL2",
-      "url": "https://github.com/d-plaindoux/masala-parser/blob/master/LICENSE-LGPL2"
+      "url": "https://github.com/domdomegg/masala-parser/blob/master/LICENSE-LGPL2"
     }
   ],
   "main": "build/lib/index.js",
@@ -53,7 +57,7 @@
     "format": "prettier-eslint --prettier.tab-width 4 --write \"src/**/*.js\"",
     "safeformat": "prettier-eslint --prettier.tab-width 4 \"src/**/*.js\"",
     "lint": "eslint \"src/**/*.js\"",
-    "test": "npm run compile && nodeunit build/test/index.js",
+    "test": "npm run compile && nodeunit build/test/parsec/response_test.js",
     "cover": "rimraf ./coverage && mkdirp coverage && babel-node  ./node_modules/.bin/babel-istanbul cover --dir coverage/istanbul node_modules/.bin/nodeunit src/test/index.js",
     "coveralls": "cat ./coverage/istanbul/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "check": "npm run lint && npm run test && npm run cover",
