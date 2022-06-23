@@ -208,7 +208,7 @@ export interface Tuple<T> {
  *
  * `const t = tuple([2, 4, 5])`;
  */
-export function tuple<T>(array?: T[]): Tuple<T>;
+export declare function tuple<T>(array?: T[]): Tuple<T>;
 
 /**
  * Represents a **source** of data that will be parsed.
