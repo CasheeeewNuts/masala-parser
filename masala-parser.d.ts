@@ -117,7 +117,7 @@ export interface Try<V, E> {
 
 }
 
-export declare type NEUTRAL = symbol;
+declare type NEUTRAL = symbol;
 
 /**
  * Represents the sequence of tokens found by the parser.
