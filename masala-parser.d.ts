@@ -21,7 +21,7 @@ export interface Option<T> {
 
     /**
      * Transform the result
-     * @param mapper : the map function
+     * @param mapper the map function
      */
     map<Y>(mapper: (t: T) => Y): Option<Y>;
 
@@ -55,7 +55,7 @@ export interface Option<T> {
 
 /**
  * The Try interface allow the parser to recover from a parse failure
- * and try backtacking with another parser using for example `or()`.
+ * and try backtracking with another parser using for example `or()`.
  * It accepts a value when success, or an error value when failed
  *
  */
@@ -111,7 +111,7 @@ export interface Try<V, E> {
     /**
      * Returns a new Try that will succeed only if first is a success
      * AND is the predicate is accepted on the value
-     * @param f
+     * @param predicate
      */
     filter(predicate: (value: V) => boolean): Try<V, E>;
 
@@ -188,7 +188,7 @@ export interface Tuple<T> {
      * The tuple will not change with the NEUTRAL element.
      * It will concatenate the two tuples as one, or add
      * a single element if it's not a Tuple.
-     * Therefore a Tuple can wrap multiple arrays.
+     * Therefore, a Tuple can wrap multiple arrays.
      * @param neutral : neutral element
      *
      * See [[TupleParser]]
@@ -396,7 +396,7 @@ export interface TupleParser<T> extends IParser<Tuple<T>> {
     first(): SingleParser<T>;
 
     /**
-     * Accepted with one or more occurrences.Will produce an Tuple of at least one T
+     * Accepted with one or more occurrences.Will produce a Tuple of at least one T
      */
     rep(): TupleParser<T>;
 
@@ -437,7 +437,7 @@ export interface VoidParser extends SingleParser<MASALA_VOID_TYPE> {
     opt(): SingleParser<Option<MASALA_VOID_TYPE>>;
 
     /**
-     * Accepted with one or more occurrences.Will produce an Tuple of at least one T
+     * Accepted with one or more occurrences.Will produce a Tuple of at least one T
      */
     rep(): TupleParser<MASALA_VOID_TYPE>;
 
@@ -472,7 +472,7 @@ export interface SingleParser<T> extends IParser<T> {
     opt(): SingleParser<Option<T>>;
 
     /**
-     * Accepted with one or more occurrences.Will produce an Tuple of at least one T
+     * Accepted with one or more occurrences.Will produce a Tuple of at least one T
      */
     rep(): TupleParser<T>;
 
@@ -574,7 +574,7 @@ export interface IParser<T> {
     /**
      * Given an accepted parser and a response value, this parser.filter(predicate) could be rejected depending on
      * the predicate applied on the response value.
-     * Filtering a rejected parser will always results in a rejected response.
+     * Filtering a rejected parser will always result in a rejected response.
      * @param predicate : predicate applied on the response value
      */
     filter(predicate: (value: T) => boolean): this;
@@ -602,7 +602,7 @@ export interface IParser<T> {
     opt(): IParser<Option<T>>;
 
     /**
-     * Accepted with one or more occurrences.Will produce an Tuple of at least one T
+     * Accepted with one or more occurrences.Will produce a Tuple of at least one T
      */
     rep(): TupleParser<any>;
 
@@ -612,7 +612,7 @@ export interface IParser<T> {
     optrep(): TupleParser<any>;
 
     /**
-     * Search for next n occurrences. `TupleParser.occurence()`  will continue to build one larger Tuple
+     * Search for next n occurrences. `TupleParser.occurrence()`  will continue to build one larger Tuple
      * ```js
      * let parser = C.char('a').then (C.char('b')).occurrence(3);
      * let resp = parser.parse(Streams.ofString('ababab'));
@@ -631,7 +631,7 @@ export interface IParser<T> {
     /**
      * Build a new High Leven parser that parses a ParserStream of tokens.
      * Tokens are defined by `this` parser.
-     * It's internally used by [[GenLex]] which is more easy to work with
+     * It's internally used by [[GenLex]] which is easier to work with
      *
      * @highParser high level parser
      */
@@ -849,7 +849,7 @@ interface GenLex {
      *
      * @param parser parser of the token
      * @param name token name
-     * @param precedence the token with lowest precedence is taken before others.
+     * @param precedence the token with the lowest precedence is taken before others.
      *
      * Choice with grammar is made after token selection !
      */
@@ -863,7 +863,7 @@ interface GenLex {
 
     /**
      * Select the parser used by genlex. It will be used as `separator.optrep().then(token).then(separator.optrep())`.
-     * So the separator must not be optional or it will make an infinite loop.
+     * So the separator must not be optional, or it will make an infinite loop.
      * The separation in your text can't be a strict one-time separation with Genlex.
      * @param parser
      */
@@ -878,8 +878,8 @@ interface GenLex {
     setSeparatorRepetition(repeat: boolean): GenLex;
 
     /**
-     * tonkenize all items, given them the name of the token
-     * Exemple : keywords(['AND', 'OR']) will create the tokens named 'AND' and 'OR' with C.string('AND'), C.string('OR)
+     * tokenize all items, given them the name of the token
+     * Example : keywords(['AND', 'OR']) will create the tokens named 'AND' and 'OR' with C.string('AND'), C.string('OR)
      * @param tokens
      */
     keywords(tokens: string[]): Array<Token<string>>;
